@@ -198,8 +198,8 @@ cordova.js
 /plugins
 /lib
 
-*.DotSettings
 .vs/
 /coverage.xml
 BenchmarkDotNet.Artifacts
 /.sonarqube
+src/**/e2e/*.txt
