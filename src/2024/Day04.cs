@@ -17,7 +17,7 @@ public sealed class Day04 : Puzzle<char[,]>
     public static int Part1(char[,] input)
     {
         Vector2[] directions = [North, South, East, West, NorthEast, NorthWest, SouthEast, SouthWest];
-        return FindChar(input, 'X')
+        return input.FindPositions('X')
             .Sum(pos => directions
                 .Sum(direction =>
                 {
@@ -31,7 +31,7 @@ public sealed class Day04 : Puzzle<char[,]>
     public static int Part2(char[,] input)
     {
         Vector2[] directions = [NorthEast, NorthWest, SouthEast, SouthWest];
-        return FindChar(input, 'A')
+        return input.FindPositions('A')
             .Count(pos =>
             {
                 var center = new Vector2(pos.x, pos.y);
@@ -42,26 +42,6 @@ public sealed class Day04 : Puzzle<char[,]>
                     return Convert.ToInt32(isMatch);
                 }) == 2; // we're looking for a cross
             });
-    }
-
-    private static IEnumerable<(int x, int y)> FindChar(char[,] buffer, char findChar)
-    {
-        int xLen = buffer.GetLength(0);
-        int yLen = buffer.GetLength(1);
-
-        for (int y = 0; y < yLen; y++)
-        {
-            for (int x = 0; x < xLen; x++)
-            {
-                char ch = buffer[x, y];
-                if (ch != findChar)
-                {
-                    continue;
-                }
-
-                yield return (x, y);
-            }
-        }
     }
 
     private static bool IsWordMatch(char[,] buffer, ReadOnlySpan<char> searchWord, int x, int y, Vector2 direction)
