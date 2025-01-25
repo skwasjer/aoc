@@ -1,4 +1,6 @@
-﻿namespace Aoc;
+﻿using System.Numerics;
+
+namespace Aoc;
 
 public static class ArrayExtensions
 {
@@ -21,5 +23,24 @@ public static class ArrayExtensions
                 yield return (x, y);
             }
         }
+    }
+
+    public static bool TryGetAt<T>(this T[,] buffer, Vector2 pos, out T? value)
+        where T : struct
+    {
+        int xLen = buffer.GetLength(0);
+        int yLen = buffer.GetLength(1);
+
+        int x = Convert.ToInt32(pos.X);
+        int y = Convert.ToInt32(pos.Y);
+
+        if (x < 0 || x >= xLen || y < 0 || y >= yLen)
+        {
+            value = null;
+            return false;
+        }
+
+        value = buffer[x, y];
+        return true;
     }
 }
