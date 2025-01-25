@@ -9,7 +9,7 @@ public sealed class Day02 : Puzzle<IEnumerable<Day02.Report>>
 
     protected override IEnumerable<Report> GetInput()
     {
-        return ReadInput()
+        return this.ReadLines()
             .Select(s =>
                 new Report(
                     s.Split(' ', StringSplitOptions.RemoveEmptyEntries)

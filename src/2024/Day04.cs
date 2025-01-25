@@ -10,21 +10,7 @@ public sealed class Day04 : Puzzle<char[,]>
 {
     protected override char[,] GetInput()
     {
-        IEnumerable<string> input = ReadInput();
-
-        string[] data = input.ToArray();
-        char[,] buffer = new char[data[0].Length, data.Length];
-
-        for (int y = 0; y < data.Length; y++)
-        {
-            string line = data[y];
-            for (int x = 0; x < line.Length; x++)
-            {
-                buffer[x, y] = line[x];
-            }
-        }
-
-        return buffer;
+        return this.Read2DArray();
     }
 
     [Solution(18)]

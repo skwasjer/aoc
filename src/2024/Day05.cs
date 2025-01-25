@@ -7,7 +7,7 @@ public sealed class Day05 : Puzzle
 {
     protected override object[] GetInput()
     {
-        var lines = ReadInput().ToList();
+        var lines = this.ReadLines().ToList();
         var rules = lines.TakeWhile(s => !string.IsNullOrEmpty(s))
             .Select(s =>
             {

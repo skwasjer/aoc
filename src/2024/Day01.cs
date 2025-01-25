@@ -9,7 +9,7 @@ public sealed class Day01 : Puzzle
     {
         List<int> left = [];
         List<int> right = [];
-        foreach (string[] values in ReadInput()
+        foreach (string[] values in this.ReadLines()
                      .Select(s => s.Split(' ', StringSplitOptions.RemoveEmptyEntries)))
         {
             left.Add(int.Parse(values[0]));
