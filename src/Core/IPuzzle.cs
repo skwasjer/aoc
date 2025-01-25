@@ -2,5 +2,5 @@
 
 public interface IPuzzle
 {
-    object? GetInput();
+    object? GetInput(Stream stream);
 }

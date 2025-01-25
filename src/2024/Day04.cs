@@ -8,9 +8,9 @@ namespace _2024;
 
 public sealed class Day04 : Puzzle<char[,]>
 {
-    protected override char[,] GetInput()
+    protected override char[,] GetInput(Stream stream)
     {
-        return this.Read2DArray();
+        return stream.Read2DArray();
     }
 
     [Solution(18)]

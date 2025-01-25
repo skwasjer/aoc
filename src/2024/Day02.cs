@@ -7,9 +7,9 @@ public sealed class Day02 : Puzzle<IEnumerable<Day02.Report>>
 {
     private const int MaxDelta = 3;
 
-    protected override IEnumerable<Report> GetInput()
+    protected override IEnumerable<Report> GetInput(Stream stream)
     {
-        return this.ReadLines()
+        return stream.ReadLines()
             .Select(s =>
                 new Report(
                     s.Split(' ', StringSplitOptions.RemoveEmptyEntries)

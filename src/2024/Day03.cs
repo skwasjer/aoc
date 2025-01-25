@@ -7,9 +7,9 @@ namespace _2024;
 
 public sealed class Day03 : Puzzle<IEnumerable<Day03.Operation>>
 {
-    protected override IEnumerable<Operation> GetInput()
+    protected override IEnumerable<Operation> GetInput(Stream stream)
     {
-        return OperationParser.Parse(string.Join("", this.ReadLines()));
+        return OperationParser.Parse(string.Join("", stream.ReadLines()));
     }
 
     [Solution(161)]

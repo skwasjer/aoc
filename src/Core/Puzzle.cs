@@ -6,10 +6,10 @@ public abstract class Puzzle : Puzzle<object[]>
 
 public abstract class Puzzle<TInput> : IPuzzle
 {
-    object? IPuzzle.GetInput()
+    object? IPuzzle.GetInput(Stream stream)
     {
-        return GetInput();
+        return GetInput(stream);
     }
 
-    protected abstract TInput GetInput();
+    protected abstract TInput GetInput(Stream stream);
 }

@@ -5,9 +5,9 @@ namespace _2024;
 
 public sealed class Day05 : Puzzle
 {
-    protected override object[] GetInput()
+    protected override object[] GetInput(Stream stream)
     {
-        var lines = this.ReadLines().ToList();
+        var lines = stream.ReadLines().ToList();
         var rules = lines.TakeWhile(s => !string.IsNullOrEmpty(s))
             .Select(s =>
             {
