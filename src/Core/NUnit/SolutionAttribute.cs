@@ -71,7 +71,10 @@ public sealed class SolutionAttribute
 
         var puzzle = (IPuzzle)Activator.CreateInstance(puzzleType)!;
         MethodInfo getInputMethodType = puzzleType.GetMethod(nameof(IPuzzle.GetInput), BindingFlags.Instance | BindingFlags.NonPublic)!;
-        return getInputMethodType.Invoke(puzzle, [stream]) ?? throw new InvalidOperationException($"No puzzle input for puzzle type {puzzleType.FullName}.");
+        using (stream)
+        {
+            return getInputMethodType.Invoke(puzzle, [stream]) ?? throw new InvalidOperationException($"No puzzle input for puzzle type {puzzleType.FullName}.");
+        }
     }
 
     private static object? GetSecretPuzzleSolution(IMethodInfo method)

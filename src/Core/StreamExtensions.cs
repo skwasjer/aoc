@@ -9,7 +9,7 @@ public static class StreamExtensions
             throw new ArgumentNullException(nameof(stream));
         }
 
-        return ReadLinesCore();
+        return ReadLinesCore().ToList();
 
         IEnumerable<string> ReadLinesCore()
         {
