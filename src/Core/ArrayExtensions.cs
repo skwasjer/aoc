@@ -1,10 +1,18 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 
 namespace Aoc;
 
 public static class ArrayExtensions
 {
     public static IEnumerable<(int x, int y)> FindPositions<T>(this T[,] buffer, T find)
+        where T : IEquatable<T>
+    {
+        return buffer.FindPositions(v => v.Equals(find));
+    }
+
+
+    public static IEnumerable<(int x, int y)> FindPositions<T>(this T[,] buffer, Func<T, bool> predicate)
         where T : IEquatable<T>
     {
         int xLen = buffer.GetLength(0);
@@ -15,7 +23,7 @@ public static class ArrayExtensions
             for (int x = 0; x < xLen; x++)
             {
                 T ch = buffer[x, y];
-                if (!ch.Equals(find))
+                if (!predicate(ch))
                 {
                     continue;
                 }
