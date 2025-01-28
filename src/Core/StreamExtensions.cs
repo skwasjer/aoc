@@ -26,17 +26,27 @@ public static class StreamExtensions
 
     public static char[,] Read2DArray(this Stream stream)
     {
+        return stream.Read2DArray(ch => ch);
+    }
+
+    public static T[,] Read2DArray<T>(this Stream stream, Func<char, T> parse)
+    {
+        return stream.Read2DArray((ch, _, _) => parse(ch));
+    }
+
+    public static T[,] Read2DArray<T>(this Stream stream, Func<char, int, int, T> parse)
+    {
         IEnumerable<string> input = stream.ReadLines();
 
         string[] data = input.ToArray();
-        char[,] buffer = new char[data[0].Length, data.Length];
+        var buffer = new T[data[0].Length, data.Length];
 
         for (int y = 0; y < data.Length; y++)
         {
             string line = data[y];
             for (int x = 0; x < line.Length; x++)
             {
-                buffer[x, y] = line[x];
+                buffer[x, y] = parse(line[x], x, y);
             }
         }
 
