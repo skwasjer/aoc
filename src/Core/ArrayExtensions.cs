@@ -47,7 +47,6 @@ public static class ArrayExtensions
     }
 
     public static bool TryGetAt<T>(this T[,] buffer, Vector2 pos, [NotNullWhen(true)] out T? value)
-        where T : struct
     {
         int xLen = buffer.GetLength(0);
         int yLen = buffer.GetLength(1);
@@ -57,11 +56,13 @@ public static class ArrayExtensions
 
         if (x < 0 || x >= xLen || y < 0 || y >= yLen)
         {
-            value = null;
+            value = default;
             return false;
         }
 
         value = buffer[x, y];
+#pragma warning disable CS8762 // Parameter must have a non-null value when exiting in some condition.
         return true;
+#pragma warning restore CS8762 // Parameter must have a non-null value when exiting in some condition.
     }
 }

@@ -54,13 +54,13 @@ public sealed class Day10 : Puzzle<HeightMap>
                 {
                     // Link neighbours.
                     Vector2 neighbourPos = value.Position + dir;
-                    if (!heightMap.TryGetAt(neighbourPos, out Location? neighbour)
-                     || neighbour.Value.Height != value.Height + 1)
+                    if (!heightMap.TryGetAt(neighbourPos, out Location neighbour)
+                     || neighbour.Height != value.Height + 1)
                     {
                         continue;
                     }
 
-                    value.Next.Add(neighbour.Value);
+                    value.Next.Add(neighbour);
                 }
             }
         }

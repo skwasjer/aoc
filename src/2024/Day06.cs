@@ -80,7 +80,7 @@ public sealed class Day06 : Puzzle<char[,]>
 
         while (true)
         {
-            bool isEndOfPath = !input.TryGetAt(pos + orientation, out char? ch);
+            bool isEndOfPath = !input.TryGetAt(pos + orientation, out char ch);
             bool isPathBlocked = !isEndOfPath && ch == Obstacle;
 
             yield return (pos, orientation, isPathBlocked);
